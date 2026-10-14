@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Between the Pages — a personal space to track, organize, and celebrate your reading journey.">
+
+    <title>Between the Pages | Book Tracker</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-shell">
+
+        <!-- Navigation -->
+        <header class="topbar">
+            <a href="#" class="brand">
+                <span class="brand-mark">B.</span>
+                <span>between the pages</span>
+            </a>
+
+            <nav class="navigation">
+                <a href="#dashboard" class="nav-link active">My Library</a>
+                <a href="#collection" class="nav-link">My Collection</a>
+            </nav>
+
+            <div class="topbar-note">
+                YOUR PERSONAL READING SPACE
+            </div>
+        </header>
+
+        <main id="dashboard">
+
+            <!-- Welcome section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <p class="eyebrow">YOUR READING JOURNEY</p>
+
+                    <h1>A world of stories,<br>
+                        <span>one page at a time.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Keep track of the stories you're exploring,
+                        the ones waiting on your shelf, and the
+                        adventures you've already finished.
+                    </p>
+                </div>
+
+                <div class="hero-decoration" aria-hidden="true">
+                    <span class="decorative-line"></span>
+                    <span class="decorative-letter">B</span>
+                    <span class="decorative-caption">EST. FOR READERS</span>
+                </div>
+            </section>
+
+            <!-- Reading statistics -->
+            <section class="stats-grid" aria-label="Reading statistics">
+
+                <article class="stat-card">
+                    <p class="stat-label">TOTAL BOOKS</p>
+                    <p class="stat-number" id="totalBooks">0</p>
+                    <p class="stat-description">In your personal library</p>
+                </article>
+
+                <article class="stat-card">
+                    <p class="stat-label">TO READ</p>
+                    <p class="stat-number" id="toReadBooks">0</p>
+                    <p class="stat-description">Stories waiting for you</p>
+                </article>
+
+                <article class="stat-card">
+                    <p class="stat-label">CURRENTLY READING</p>
+                    <p class="stat-number" id="readingBooks">0</p>
+                    <p class="stat-description">Your current adventures</p>
+                </article>
+
+                <article class="stat-card">
+                    <p class="stat-label">FINISHED</p>
+                    <p class="stat-number" id="finishedBooks">0</p>
+                    <p class="stat-description">Stories you've completed</p>
+                </article>
+
+            </section>
+
+            <!-- Library section -->
+            <section class="library-section" id="collection">
+
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">THE COLLECTION</p>
+                        <h2>Your bookshelf<span>.</span></h2>
+                    </div>
+
+                    <button class="primary-button" id="addBookButton">
+                        <span aria-hidden="true">+</span> Add a book
+                    </button>
+                </div>
+
+                <!-- Search and filters -->
+                <div class="library-toolbar">
+                    <label class="search-box">
+                        <span aria-hidden="true">⌕</span>
+                        <input
+                            type="search"
+                            id="searchInput"
+                            placeholder="Search by title or author..."
+                            aria-label="Search books by title or author"
+                        >
+                    </label>
+
+                    <label class="filter-box">
+                        <span class="sr-only">Filter by reading status</span>
+                        <select id="statusFilter">
+                            <option value="all">All books</option>
+                            <option value="To Read">To Read</option>
+                            <option value="Reading">Currently Reading</option>
+                            <option value="Finished">Finished</option>
+                        </select>
+                    </label>
+                </div>
+
+<!-- Add book form -->
+<div class="modal-overlay" id="bookModal" hidden>
+    <section
+        class="book-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle"
+    >
+        <div class="modal-heading">
+            <div>
+                <p class="eyebrow">GROW YOUR LIBRARY</p>
+                <h2 id="modalTitle">Add a new book<span>.</span></h2>
+            </div>
+
+            <button
+                type="button"
+                class="close-modal"
+                id="closeModalButton"
+                aria-label="Close form"
+            >×</button>
+        </div>
+
+        <form id="bookForm" novalidate>
+            <div class="form-field">
+                <label for="bookTitle">Book title</label>
+                <input
+                    type="text"
+                    id="bookTitle"
+                    name="title"
+                    placeholder="e.g. The Alchemist"
+                    maxlength="120"
+                    required
+                >
+                <small class="field-error" id="titleError"></small>
+            </div>
+
+            <div class="form-field">
+                <label for="bookAuthor">Author</label>
+                <input
+                    type="text"
+                    id="bookAuthor"
+                    name="author"
+                    placeholder="e.g. Paulo Coelho"
+                    maxlength="100"
+                    required
+                >
+                <small class="field-error" id="authorError"></small>
+            </div>
+
+            <div class="form-field">
+                <label for="bookStatus">Reading status</label>
+                <select id="bookStatus" name="status">
+                    <option value="To Read">To Read</option>
+                    <option value="Reading">Currently Reading</option>
+                    <option value="Finished">Finished</option>
+                </select>
+            </div>
+
+            <div class="form-actions">
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="cancelBookButton"
+                >Cancel</button>
+
+                <button type="submit" class="primary-button">
+                    Add to my library <span aria-hidden="true">→</span>
+                </button>
+            </div>
+        </form>
+    </section>
+</div>
+
+                <!-- Books will be rendered here with JavaScript -->
+                <div class="book-grid" id="bookGrid">
+                    <div class="empty-state">
+                        <span class="empty-icon" aria-hidden="true">✳</span>
+                        <h3>Your next favourite book belongs here.</h3>
+                        <p>Add your first book to start building your collection.</p>
+                        <button class="text-button" id="emptyAddButton">
+                            Add your first book <span aria-hidden="true">→</span>
+                        </button>
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <span>BETWEEN THE PAGES</span>
+            <span>Made for the love of reading.</span>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
