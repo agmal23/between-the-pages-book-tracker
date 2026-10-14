@@ -6,7 +6,7 @@ This document records key prompts used to guide the development of the Between t
 
 ### Prompt 1 — Project Planning and Design
 
-"Help me build a Book Tracker web application from scratch, step by step. Use HTML, CSS, and vanilla JavaScript. I want a polished, responsive interface with a premium editorial bookstore aesthetic. Explain each stage clearly and wait for my confirmation before moving to the next stage."
+"Act as a senior frontend engineer and UI/UX designer. Help me build a responsive Book Tracker using HTML, CSS, and vanilla JavaScript, featuring a premium editorial bookstore aesthetic. Prioritize elegant design, clean code, accessibility, smooth interactions, reliable functionality, and a polished, portfolio-ready user experience."
 
 ### Prompt 2 — HTML Structure
 
